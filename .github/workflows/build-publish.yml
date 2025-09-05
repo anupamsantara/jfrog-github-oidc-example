@@ -10,8 +10,7 @@ jobs:
   build:
      runs-on: ubuntu-latest
      env:
-      OIDC_AUDIENCE: 'jfrog-github'
-      OIDC_PROVIDER: 'testoidcgithub'
+      
       PLATFORM_REPO: 'eks-npm'
      defaults:
       run:
@@ -26,10 +25,10 @@ jobs:
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v4
          env:  
-           JF_URL: ${{ vars.JF_URL }}
+           JF_URL: https://hts2.jfrog.io
          with:
-           oidc-provider-name: ${{ env.OIDC_PROVIDER }}
-           oidc-audience: ${{ env.OIDC_AUDIENCE }}
+           oidc-provider-name: anupams-github-provider
+           
 
        - name: Set CLI Config
          run: jf npm-config --global=true --repo-resolve=$PLATFORM_REPO --repo-deploy=$PLATFORM_REPO
